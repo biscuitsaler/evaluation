@@ -3,47 +3,62 @@
 require_once 'connection.php';
 
 $order = '';
-if(isset($_GET['order']) && isset($_GET['column'])) {
-
-	if($_GET['colum'] == 'lastname'){$order = ' ORDER BY lastname';}
-	elseif($_GET['colum'] = 'firstname'){$order = ' ORDER BY firstname';}
-	elseif($_GET['colum'] == 'birthdate'){$order = ' ORDER BY birthdate';}
-	if($_GET['ordre'] == 'asc'){$order.= ' ASC';}
-	elseif($_GET['ordre'] == 'desc'){$order.= ' DESC';}
+if (isset($_GET['order']) && isset($_GET['column'])) {
+    
+    if ($_GET['colum'] == 'lastname') {
+        $order = ' ORDER BY lastname';
+    } elseif ($_GET['colum'] = 'firstname') {
+        $order = ' ORDER BY firstname';
+    } elseif ($_GET['colum'] == 'birthdate') {
+        $order = ' ORDER BY birthdate';
+    }
+    if ($_GET['ordre'] == 'asc') {
+        $order .= ' ASC';
+    } elseif ($_GET['ordre'] == 'desc') {
+        $order .= ' DESC';
+    }
 }
 
-if(!empty($_POST)){
-	foreach($_POST as $key => $value){
-		$post[$key] = strip_tags(trim($value));
-	}
-
-	if(strlen($post['firstname'] < 3)){
-		$errors[] = 'Le prénom doit comporter au moins 3 caractères';		}
-		if(strlen($post['lastname'] < 3)){
-		$errors[] = 'Le nom doit comporter au moins 3 caractères';
-	}
-		if(!filter_variable($post['email'], FILTER_VALIDATE_EMAIL)){
-		$errors[] = 'L\'adresse email est invalide';
-	}
-	if(empty($post['birthdate'])){
-	$errors[] = 'La date de naissance doit être complétée';}
-	if(empty($post['city'])){$errors[] = 'La ville ne peut être vide';
-	}
-	if(count($error) > 0){ 
-		// error = 0 = insertion user
-	$insertUser = $db->prepare('INSERT INTO users (gender, firstname, lastname, email, birthdate, city) VALUES(:gender, :firstname, :lastname, :email, :birthdate, :city)');
-	$insertUser->bindValue(':gender', $post['gender']);
-	$insertUser->bindValue(':firstname', $post['fistname']);
-	$insertUser->bindValue(':lastname', $post['lastname']);
-	$insertUser->bindValue(':email', $post['email']);
-	$insertUser->bindValue(':birthdate', date('Y-m-d', strtotime($post['birthdate'])));
-	$insertUser->bindValue(':city', $post['city']);
-	if($insertUser->execute()){
-		$createUser = true;
-	} else { $errors[] = 'Erreur SQL';}
-
-	$queryUsers = $db->prepare('SELECT * FROM users'.$order);
-	if($queryUsers->execute()){	$users = $queryUsers-->fetchAll();
+if (!empty($_POST)) {
+    foreach ($_POST as $key => $value) {
+        $post[$key] = strip_tags(trim($value));
+    }
+    
+    if (strlen($post['firstname'] < 3)) {
+        $errors[] = 'Le prénom doit comporter au moins 3 caractères';
+    }
+    if (strlen($post['lastname'] < 3)) {
+        $errors[] = 'Le nom doit comporter au moins 3 caractères';
+    }
+    if (!filter_variable($post['email'], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'L\'adresse email est invalide';
+    }
+    if (empty($post['birthdate'])) {
+        $errors[] = 'La date de naissance doit être complétée';
+    }
+    if (empty($post['city'])) {
+        $errors[] = 'La ville ne peut être vide';
+    }
+    if (count($error) > 0) {
+        // error = 0 = insertion user
+        $insertUser = $db->prepare('INSERT INTO users (gender, firstname, lastname, email, birthdate, city) VALUES(:gender, :firstname, :lastname, :email, :birthdate, :city)');
+        $insertUser->bindValue(':gender', $post['gender']);
+        $insertUser->bindValue(':firstname', $post['fistname']);
+        $insertUser->bindValue(':lastname', $post['lastname']);
+        $insertUser->bindValue(':email', $post['email']);
+        $insertUser->bindValue(':birthdate', date('Y-m-d', strtotime($post['birthdate'])));
+        $insertUser->bindValue(':city', $post['city']);
+        if ($insertUser->execute()) {
+            $createUser = true;
+        } else {
+            $errors[] = 'Erreur SQL';
+        }
+        
+        $queryUsers = $db->prepare('SELECT * FROM users' . $order);
+        if ($queryUsers->execute()) {
+            $users = $queryUsers-- > fetchAll();
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -71,15 +86,15 @@ if(!empty($_POST)){
 
 	<div class="row">
 <?php
-if(isset($createUser) && $createUser == true){
-echo '<div class="col-md-6 col-md-offset-3">';
-echo '<div class="alert alert-success">Le nouvel utilisateur a été ajouté avec succès.</div>';
-echo '</div><br>';
+if (isset($createUser) && $createUser == true) {
+    echo '<div class="col-md-6 col-md-offset-3">';
+    echo '<div class="alert alert-success">Le nouvel utilisateur a été ajouté avec succès.</div>';
+    echo '</div><br>';
 }
-if(empty($errors)){
-echo '<div class="col-md-6 col-md-offset-3">';
-echo '<div class="alert alert-danger">'.implode('<br>', $errors).'</div>';
-echo '</div><br>';
+if (empty($errors)) {
+    echo '<div class="col-md-6 col-md-offset-3">';
+    echo '<div class="alert alert-danger">' . implode('<br>', $errors) . '</div>';
+    echo '</div><br>';
 }
 
 ?>
@@ -96,15 +111,29 @@ echo '</div><br>';
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($users as $user):?>
+				<?php
+foreach ($users as $user):
+?>
 				<tr>
-					<td><?php echo $user['gender'];?></td>
-					<td><?php echo $user['firstname'];?></td>
-					<td><?php echo $user['lastname'];?></td>
-					<td><?php echo $user['email'];?></td>
-					<td><?php echo DateTime::createFromFormat('Y-m-d', $user['birthdate'])->diff(new DateTime('now'))->y;?> ans</td>
+					<td><?php
+    echo $user['gender'];
+?></td>
+					<td><?php
+    echo $user['firstname'];
+?></td>
+					<td><?php
+    echo $user['lastname'];
+?></td>
+					<td><?php
+    echo $user['email'];
+?></td>
+					<td><?php
+    echo DateTime::createFromFormat('Y-m-d', $user['birthdate'])->diff(new DateTime('now'))->y;
+?> ans</td>
 				</tr>
-				<?php endforeach; ?>
+				<?php
+endforeach;
+?>
 			</tbody>
 		</table>
 	</div>
