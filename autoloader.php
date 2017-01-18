@@ -1,5 +1,5 @@
 <?php
-require 'autoloader.php'; // J'inclus la classe.
+require 'classChat.php'; // J'inclus la classe.
 
 // je définis mes 3 chats avec les informations
     $monChat1 = new Chat("jacky",3,"blanc","male","siamois");
