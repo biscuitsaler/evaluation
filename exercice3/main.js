@@ -32,7 +32,7 @@ $(document).ready(function(){
 	        });
 	    }
 	    else{
-	        // Vous pouvez ici penser à afficher un élément "caché" de votre HTML comportant l'ID "#missing"
+	        //  afficher un élément "caché" de votre HTML comportant l'ID "#missing"
 	        $('#missing').show();
 	    }
 	});
