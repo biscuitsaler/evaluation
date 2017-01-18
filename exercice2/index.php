@@ -7,14 +7,14 @@ if (isset($_GET['order']) && isset($_GET['column'])) {
     
     if ($_GET['column'] == 'lastname') {
         $order = ' ORDER BY lastname';
-    } elseif ($_GET['colum'] = 'firstname') {
+    } elseif ($_GET['column'] = 'firstname') {
         $order = ' ORDER BY firstname';
     } elseif ($_GET['column'] == 'birthdate') {
         $order = ' ORDER BY birthdate';
     }
-    if ($_GET['ordre'] == 'asc') {
+    if ($_GET['$order'] == 'asc') {
         $order .= ' ASC';
-    } elseif ($_GET['ordre'] == 'desc') {
+    } elseif ($_GET['$order'] == 'desc') {
         $order .= ' DESC';
     }
 }
