@@ -3,7 +3,7 @@
 require_once 'connection.php';
 
 $order = '';
-if(isset($_GET['order']) && isset($_GET['column']){
+if(isset($_GET['order']) && isset($_GET['column'])) {
 
 	if($_GET['colum'] == 'lastname'){$order = ' ORDER BY lastname';}
 	elseif($_GET['colum'] = 'firstname'){$order = ' ORDER BY firstname';}
@@ -14,7 +14,7 @@ if(isset($_GET['order']) && isset($_GET['column']){
 
 if(!empty($_POST)){
 	foreach($_POST as $key => $value){
-		$post[$key] = strip_tags(trim($value)));
+		$post[$key] = strip_tags(trim($value));
 	}
 
 	if(strlen($post['firstname'] < 3)){
@@ -33,7 +33,7 @@ if(!empty($_POST)){
 		// error = 0 = insertion user
 	$insertUser = $db->prepare('INSERT INTO users (gender, firstname, lastname, email, birthdate, city) VALUES(:gender, :firstname, :lastname, :email, :birthdate, :city)');
 	$insertUser->bindValue(':gender', $post['gender']);
-	$insertUser->bindValue(':firstname', $post['fistname'])
+	$insertUser->bindValue(':firstname', $post['fistname']);
 	$insertUser->bindValue(':lastname', $post['lastname']);
 	$insertUser->bindValue(':email', $post['email']);
 	$insertUser->bindValue(':birthdate', date('Y-m-d', strtotime($post['birthdate'])));
@@ -73,7 +73,7 @@ if(!empty($_POST)){
 if(isset($createUser) && $createUser == true){
 echo '<div class="col-md-6 col-md-offset-3">';
 echo '<div class="alert alert-success">Le nouvel utilisateur a été ajouté avec succès.</div>';
-echo '</div><br>'
+echo '</div><br>';
 }
 if(empty($errors)){
 echo '<div class="col-md-6 col-md-offset-3">';
@@ -81,7 +81,14 @@ echo '<div class="alert alert-danger">'.implode('<br>', $errors).'</div>';
 echo '</div><br>';
 }
 ?>
-
+<html>
+    <head>
+        <title>Page du stagiaire</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+	 <body>
 	<div class="col-md-7">
 		<table class="table">
 			<thead>
