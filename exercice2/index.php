@@ -5,11 +5,11 @@ require_once 'connection.php';
 $order = '';
 if (isset($_GET['order']) && isset($_GET['column'])) {
     
-    if ($_GET['colum'] == 'lastname') {
+    if ($_GET['column'] == 'lastname') {
         $order = ' ORDER BY lastname';
     } elseif ($_GET['colum'] = 'firstname') {
         $order = ' ORDER BY firstname';
-    } elseif ($_GET['colum'] == 'birthdate') {
+    } elseif ($_GET['column'] == 'birthdate') {
         $order = ' ORDER BY birthdate';
     }
     if ($_GET['ordre'] == 'asc') {
