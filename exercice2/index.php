@@ -45,7 +45,8 @@ if(!empty($_POST)){
 	$queryUsers = $db->prepare('SELECT * FROM users'.$order);
 	if($queryUsers->execute()){	$users = $queryUsers-->fetchAll();
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Exercice 1</title>
@@ -80,15 +81,9 @@ echo '<div class="col-md-6 col-md-offset-3">';
 echo '<div class="alert alert-danger">'.implode('<br>', $errors).'</div>';
 echo '</div><br>';
 }
+
 ?>
-<html>
-    <head>
-        <title>Page du stagiaire</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-	 <body>
+</div>
 	<div class="col-md-7">
 		<table class="table">
 			<thead>
