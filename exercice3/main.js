@@ -24,7 +24,7 @@ $(document).ready(function(){
 	    var model = encodeURIComponent( $('#model').val() ); // .val() renvoie la valeur du formulaire
 		var year = encodeURIComponent( $('#year').val() ); // Encodage des données avec encodeURIComponent
 	    var color = encodeURIComponent( $('#color').val() ); // .val() renvoie la valeur du formulaire
-	    if(username != "" && password != ""){ // On verifie ainsi que les deux variables ne sont pas vides
+	    if(brand != "" && model != "" && year != "" && color != ""){ // On verifie ainsi que les deux variables ne sont pas vides
 	        $.ajax({
 	            url : "login.php", // on donne l'URL du fichier de traitement
 	            type : "POST", // la requête est de type POST
