@@ -1,5 +1,9 @@
 <?php
-/* Traiter ici des differentes infos : 
-$username = $_POST['username']; 
-$password = $_POST['password'];
-*/
+/* Traitement des infos : */
+$brand = $_POST['brand']; 
+$model = $_POST['model'];
+$year  = $_POST['year'];
+$color = $_POST['color'];
+
+
+?>

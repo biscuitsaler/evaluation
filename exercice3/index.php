@@ -8,8 +8,10 @@
     <section id="zone"></section>
 	<hr>
 	<form method="POST" action="login.php">
-	    Pseudo : <input type="text" name="username" id="username" /><br />
-	    Message : <input type="text" name="password" id="password"><br />
+	    Brand : <input type="text" name="brand" id="brand" /><br />
+	    Model : <input type="text" name="model" id="model"><br />
+		Year  : <input type="text" name="year" id="year" /><br />
+		Color : <input type="text" name="color" id="color" /><br />
 	    <input type="submit" name="submit" value="Envoyer" id="envoi" />
 	</form>
     

@@ -20,13 +20,15 @@ $(document).ready(function(){
 
 	$('#envoi').click(function(e){
 	    e.preventDefault(); // Le bouton n'enverra pas le formulaire
-	    var username = encodeURIComponent( $('#username').val() ); // Encodage des données avec encodeURIComponent
-	    var password = encodeURIComponent( $('#password').val() ); // .val() renvoie la valeur des formulaires, donc les contenus des champs #username et #password
+	    var brand = encodeURIComponent( $('#brand').val() ); // Encodage des données avec encodeURIComponent
+	    var model = encodeURIComponent( $('#model').val() ); // .val() renvoie la valeur du formulaire
+		var year = encodeURIComponent( $('#year').val() ); // Encodage des données avec encodeURIComponent
+	    var color = encodeURIComponent( $('#color').val() ); // .val() renvoie la valeur du formulaire
 	    if(username != "" && password != ""){ // On verifie ainsi que les deux variables ne sont pas vides
 	        $.ajax({
 	            url : "login.php", // on donne l'URL du fichier de traitement
 	            type : "POST", // la requête est de type POST
-	            data : "username=" + username + "&password=" + password // et on envoie nos données
+	            data : "brand=" + brand + "&model=" + model + "&year=" + year + "&color=" + color // et on envoie nos données
 	        });
 	    }
 	    else{
